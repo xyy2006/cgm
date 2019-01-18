@@ -1,0 +1,5 @@
+"0","ggplot(data = glucose_raw %>% filter(time > from"
+"0","                       & time < (from + hours(2))),"
+"0","       aes(x=time,y=value)) + geom_line(size=2, color = ""red"") + glucose_target_gg +"
+"0","  # scale_x_continuous() + "
+"0","  labs(title = ""Glucose after drinking apple juice"", x = ""Minutes"", y = ""mg/dL"")"

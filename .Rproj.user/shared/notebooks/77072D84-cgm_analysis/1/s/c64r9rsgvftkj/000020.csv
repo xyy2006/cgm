@@ -1,0 +1,4 @@
+"0"," "
+"0","## Beer"
+"0","foodlist <- activity_raw %>% dplyr::filter(str_detect(str_to_lower(activity_raw$Comment),pattern = ""beer"")) %>% .$Comment"
+"0","food_effect(foodlist) %>% group_by(experiment) %>% mutate(delta = (time - min(time))/60) %>% ggplot(aes(x=delta,y=value, color = experiment)) + geom_line(size = 2) + scale_x_continuous() + labs(title = ""Glucose after drinking beer"", x = ""Minutes"", y = ""mg/dL"")"

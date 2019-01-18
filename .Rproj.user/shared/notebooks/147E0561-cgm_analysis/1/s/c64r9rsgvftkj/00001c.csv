@@ -1,0 +1,3 @@
+"0","theme_set(theme_stata())"
+"0"," foodlist <- c(""Oatmeal (plain)"",""Oatmeal w/milk"",""Oatmeal w/butter"", ""Oatmeal w/cinnamon"")"
+"0","food_effect(foodlist) %>% group_by(experiment) %>% mutate(delta = (time - min(time))/60) %>% ggplot(aes(x=delta,y=value, color = experiment)) + geom_line(size = 2) + scale_x_continuous() + labs(title = ""Glucose after eating oatmeal"", x = ""Minutes"", y = ""mg/dL"")"

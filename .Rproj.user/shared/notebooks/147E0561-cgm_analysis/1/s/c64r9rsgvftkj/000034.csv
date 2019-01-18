@@ -1,0 +1,6 @@
+"0","cgm_display(start = activity_raw %>% filter(Comment == ""Blueberry-banana"") %>% pull(Start),"
+"0","            end = activity_raw %>% filter(Comment == ""Blueberry-banana"") %>% pull(Start) + hours(2)"
+"0",") + labs(x = ""time"", title = ""After a smoothie"", subtitle = ""Glucose (mg/dL)"", y = ""mg/dL"") + scale_x_datetime(limits = c(activity_raw %>% filter(Comment == ""Blueberry-banana"") %>% pull(Start),"
+"0","                                                                                                                             activity_raw %>% filter(Comment == ""Blueberry-banana"") %>% pull(Start) + hours(2)))"
+"2","Scale for 'x' is already present. Adding another scale for 'x', which will replace the existing scale.
+"
