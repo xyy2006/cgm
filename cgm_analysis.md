@@ -183,7 +183,7 @@ Here's how I look when eating specific foods:
 ## will replace the existing scale.
 ```
 
-![](cgm_analysis_files/figure-html/unnamed-chunk-7-13.png)<!-- -->![](cgm_analysis_files/figure-html/unnamed-chunk-7-14.png)<!-- -->
+![](cgm_analysis_files/figure-html/unnamed-chunk-7-13.png)<!-- -->![](cgm_analysis_files/figure-html/unnamed-chunk-7-14.png)<!-- -->![](cgm_analysis_files/figure-html/unnamed-chunk-7-15.png)<!-- -->
 
 Table: Glucose Changes from drinking a latte
 
@@ -214,7 +214,7 @@ Latte22                104           81       23
 Latte23                113           74       39
 Latte24                100           74       26
 
-![](cgm_analysis_files/figure-html/unnamed-chunk-7-15.png)<!-- -->
+![](cgm_analysis_files/figure-html/unnamed-chunk-7-16.png)<!-- -->
 
 
 
@@ -289,7 +289,7 @@ glucose %>% filter(apply(sapply(glucose$time,
 ## ------------------------------------------------------------------------- 
 ## Describe . (tbl_df, tbl, data.frame):
 ## 
-## data.frame:	2682 obs. of  1 variables
+## data.frame:	2692 obs. of  1 variables
 ## 
 ##   Nr  ColName  Class    NAs        Levels
 ##   1   value    numeric  17 (0.6%)        
@@ -299,14 +299,14 @@ glucose %>% filter(apply(sapply(glucose$time,
 ## Glucose Values While Awake
 ## 
 ##   length      n    NAs  unique      0s    mean  meanCI
-##    2'682  2'665     17     120       0   91.38   90.64
-##           99.4%   0.6%            0.0%           92.12
+##    2'692  2'675     17     120       0   91.40   90.66
+##           99.4%   0.6%            0.0%           92.14
 ##                                                       
 ##      .05    .10    .25  median     .75     .90     .95
 ##    63.00  69.00  79.00   90.00  102.00  117.00  128.00
 ##                                                       
 ##    range     sd  vcoef     mad     IQR    skew    kurt
-##   151.00  19.53   0.21   16.31   23.00    0.56    1.03
+##   151.00  19.53   0.21   16.31   23.00    0.55    1.03
 ##                                                       
 ## lowest : 40.0 (3), 41.0 (4), 42.0 (3), 43.0 (2), 44.0 (5)
 ## highest: 166.0 (2), 172.0, 187.0, 188.0, 191.0
