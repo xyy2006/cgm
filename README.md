@@ -1,35 +1,25 @@
----
-title: "Continuous Glucose Monitoring Analysis"
-author: "Richard Sprague"
-date: "2019-01-10"
-slug: cgm_analysis
-tags: qs, biology, R
-categories: health
-output: 
-  html_document: 
-    keep_md: yes
----
+Continuous Glucose Monitoring with Freestyle Libre
+================
+Richard Sprague
+2019-01-29
 
-I've been tracking my glucose levels 24 x 7 using a continuous glucose monitor from Abbot Labs called the [Freestyle Libre](https://www.freestylelibre.us/index.html). 
+I've been tracking my glucose levels 24 x 7 using a continuous glucose monitor from Abbot Labs called the [Freestyle Libre](https://www.freestylelibre.us/index.html).
 
 Read (and edit!) my [Continuous Glucose Monitoring Hackers Guide](https://docs.google.com/document/d/11DFx0E-ZQ-r_D1SqXvMtvkDCjx6j7NevrE43WSaKyJE/edit?usp=sharing) for details for how to get started, plus as many resources as I know about other apps and links that you might find useful for beginning your own CGM analysis.
 
 This is a short R script I use for my analysis.
 
----
+------------------------------------------------------------------------
 
 First we read the data and put it into a tidy format in two dataframes:
 
 `libre_raw` : the raw output from a Librelink CSV file. You could just read.csv straight from the CSV if you like.
 
-`activity_raw`: your file containing the metadata about whatever you'd like to track. The following script assumes you'll have variables for `Sleep`, `Exercise`, `Food`, and a catch-all called `Event`. 
-
-
+`activity_raw`: your file containing the metadata about whatever you'd like to track. The following script assumes you'll have variables for `Sleep`, `Exercise`, `Food`, and a catch-all called `Event`.
 
 Now clean up the data and then set up a few other useful variables.
 
-
-```r
+``` r
 library(tidyverse)
 library(lubridate)
 library(ggthemes)
@@ -60,8 +50,7 @@ glucose_raw <- glucose
 
 Set up a few convenience functions.
 
-
-```r
+``` r
 # a handy ggplot object that draws a band through the "healthy" target zones across the width of any graph:
 glucose_target_gg <-   geom_rect(aes(xmin=as.POSIXct(-Inf,  origin = "1970-01-01"),
                 xmax=as.POSIXct(Inf,  origin= "1970-01-01"),
@@ -132,12 +121,9 @@ food_effect <- function( foodlist = c("Oatmeal","Oatmeal w cinnamon"), activity_
 }
 ```
 
-
-
 View the last couple days of the dataset:
 
-
-```r
+``` r
 startDate <- now() - days(2) #min(glucose$time)
 
 #cgm_display(startDate,now()-days(6))
@@ -145,86 +131,77 @@ startDate <- now() - days(2) #min(glucose$time)
 cgm_display(startDate,startDate + days(2))
 ```
 
-![](cgm_analysis_files/figure-html/unnamed-chunk-4-1.png)<!-- -->
+![](README_files/figure-markdown_github/unnamed-chunk-4-1.png)
 
 Here's just for a single day:
 
-
-```r
+``` r
 #pdf("icecream.pdf", width = 11, height = 8.5)
 cgm_display(start = min(glucose_raw$time),min(glucose_raw$time)+hours(24))
 ```
 
-![](cgm_analysis_files/figure-html/unnamed-chunk-5-1.png)<!-- -->
+![](README_files/figure-markdown_github/unnamed-chunk-5-1.png)
 
-```r
+``` r
 #dev.off()
 ```
 
-
 The final full day of the dataset:
 
-
-```r
+``` r
 cgm_display(start = max(glucose_raw$time)-days(1), end = max(glucose_raw$time))
 ```
 
-![](cgm_analysis_files/figure-html/unnamed-chunk-6-1.png)<!-- -->
+![](README_files/figure-markdown_github/unnamed-chunk-6-1.png)
 
-
-## Food types
+Food types
+----------
 
 Here's how I look when eating specific foods:
 
-![](cgm_analysis_files/figure-html/unnamed-chunk-7-1.png)<!-- -->![](cgm_analysis_files/figure-html/unnamed-chunk-7-2.png)<!-- -->![](cgm_analysis_files/figure-html/unnamed-chunk-7-3.png)<!-- -->![](cgm_analysis_files/figure-html/unnamed-chunk-7-4.png)<!-- -->![](cgm_analysis_files/figure-html/unnamed-chunk-7-5.png)<!-- -->![](cgm_analysis_files/figure-html/unnamed-chunk-7-6.png)<!-- -->![](cgm_analysis_files/figure-html/unnamed-chunk-7-7.png)<!-- -->![](cgm_analysis_files/figure-html/unnamed-chunk-7-8.png)<!-- -->![](cgm_analysis_files/figure-html/unnamed-chunk-7-9.png)<!-- -->![](cgm_analysis_files/figure-html/unnamed-chunk-7-10.png)<!-- -->![](cgm_analysis_files/figure-html/unnamed-chunk-7-11.png)<!-- -->![](cgm_analysis_files/figure-html/unnamed-chunk-7-12.png)<!-- -->
+![](README_files/figure-markdown_github/unnamed-chunk-7-1.png)![](README_files/figure-markdown_github/unnamed-chunk-7-2.png)![](README_files/figure-markdown_github/unnamed-chunk-7-3.png)![](README_files/figure-markdown_github/unnamed-chunk-7-4.png)![](README_files/figure-markdown_github/unnamed-chunk-7-5.png)![](README_files/figure-markdown_github/unnamed-chunk-7-6.png)![](README_files/figure-markdown_github/unnamed-chunk-7-7.png)![](README_files/figure-markdown_github/unnamed-chunk-7-8.png)![](README_files/figure-markdown_github/unnamed-chunk-7-9.png)![](README_files/figure-markdown_github/unnamed-chunk-7-10.png)![](README_files/figure-markdown_github/unnamed-chunk-7-11.png)![](README_files/figure-markdown_github/unnamed-chunk-7-12.png)
 
-```
-## Scale for 'x' is already present. Adding another scale for 'x', which
-## will replace the existing scale.
-```
+    ## Scale for 'x' is already present. Adding another scale for 'x', which
+    ## will replace the existing scale.
 
-![](cgm_analysis_files/figure-html/unnamed-chunk-7-13.png)<!-- -->![](cgm_analysis_files/figure-html/unnamed-chunk-7-14.png)<!-- -->![](cgm_analysis_files/figure-html/unnamed-chunk-7-15.png)<!-- -->
+![](README_files/figure-markdown_github/unnamed-chunk-7-13.png)![](README_files/figure-markdown_github/unnamed-chunk-7-14.png)![](README_files/figure-markdown_github/unnamed-chunk-7-15.png)
 
-Table: Glucose Changes from drinking a latte
+| experiment   |  max(value)|  min(value)|  change|
+|:-------------|-----------:|-----------:|-------:|
+| Latte1       |          NA|          NA|      NA|
+| latte2       |         120|          74|      46|
+| latte3       |          99|          86|      13|
+| latte4       |         100|          90|      10|
+| latte5       |         107|          87|      20|
+| latte6       |         115|          96|      19|
+| Latte7       |         144|          91|      53|
+| Latte8       |         136|          88|      48|
+| Latte9       |         108|          86|      22|
+| Latte10      |         104|          84|      20|
+| Latte11      |         115|          89|      26|
+| Chai Latte12 |         128|          74|      54|
+| Latte13      |         103|          82|      21|
+| latte14      |         107|          92|      15|
+| Latte15      |         115|         100|      15|
+| Latte16      |         133|         100|      33|
+| Latte17      |          97|          73|      24|
+| Latte18      |          82|          69|      13|
+| Latte19      |          85|          65|      20|
+| Latte20      |         101|          69|      32|
+| Latte21      |          93|          67|      26|
+| Latte22      |         104|          81|      23|
+| Latte23      |         113|          74|      39|
+| Latte24      |         100|          74|      26|
+| Latte25      |          99|          71|      28|
 
-experiment      max(value)   min(value)   change
--------------  -----------  -----------  -------
-Latte1                  NA           NA       NA
-latte2                 120           74       46
-latte3                  99           86       13
-latte4                 100           90       10
-latte5                 107           87       20
-latte6                 115           96       19
-Latte7                 144           91       53
-Latte8                 136           88       48
-Latte9                 108           86       22
-Latte10                104           84       20
-Latte11                115           89       26
-Chai Latte12           128           74       54
-Latte13                103           82       21
-latte14                107           92       15
-Latte15                115          100       15
-Latte16                133          100       33
-Latte17                 97           73       24
-Latte18                 82           69       13
-Latte19                 85           65       20
-Latte20                101           69       32
-Latte21                 93           67       26
-Latte22                104           81       23
-Latte23                113           74       39
-Latte24                100           74       26
-Latte25                 99           71       28
+![](README_files/figure-markdown_github/unnamed-chunk-7-16.png)
 
-![](cgm_analysis_files/figure-html/unnamed-chunk-7-16.png)<!-- -->
-
-
-
-## Basic Statistics
+Basic Statistics
+----------------
 
 What is my average glucose level while sleeping?
 
-
-```r
+``` r
 library(lubridate)
 
 options(scipen = 999)
@@ -249,36 +226,34 @@ glucose %>% filter(apply(sapply(glucose$time,
   DescTools::Desc(main = "Glucose Values While Sleeping")
 ```
 
-```
-## ------------------------------------------------------------------------- 
-## Describe . (tbl_df, tbl, data.frame):
-## 
-## data.frame:	742 obs. of  1 variables
-## 
-##   Nr  ColName  Class    NAs  Levels
-##   1   value    numeric  .          
-## 
-## 
-## ------------------------------------------------------------------------- 
-## Glucose Values While Sleeping
-## 
-##   length       n    NAs  unique     0s   mean  meanCI
-##      742     742      0      80      0  79.98   78.95
-##           100.0%   0.0%           0.0%          81.00
-##                                                      
-##      .05     .10    .25  median    .75    .90     .95
-##    54.00   62.00  72.00   81.00  88.00  97.00  102.00
-##                                                      
-##    range      sd  vcoef     mad    IQR   skew    kurt
-##    92.00   14.22   0.18   11.86  16.00  -0.15    0.89
-##                                                      
-## lowest : 40.0 (3), 41.0 (4), 42.0 (3), 43.0 (2), 44.0
-## highest: 120.0, 121.0, 125.0, 131.0, 132.0
-```
+    ## ------------------------------------------------------------------------- 
+    ## Describe . (tbl_df, tbl, data.frame):
+    ## 
+    ## data.frame:  742 obs. of  1 variables
+    ## 
+    ##   Nr  ColName  Class    NAs  Levels
+    ##   1   value    numeric  .          
+    ## 
+    ## 
+    ## ------------------------------------------------------------------------- 
+    ## Glucose Values While Sleeping
+    ## 
+    ##   length       n    NAs  unique     0s   mean  meanCI
+    ##      742     742      0      80      0  79.98   78.95
+    ##           100.0%   0.0%           0.0%          81.00
+    ##                                                      
+    ##      .05     .10    .25  median    .75    .90     .95
+    ##    54.00   62.00  72.00   81.00  88.00  97.00  102.00
+    ##                                                      
+    ##    range      sd  vcoef     mad    IQR   skew    kurt
+    ##    92.00   14.22   0.18   11.86  16.00  -0.15    0.89
+    ##                                                      
+    ## lowest : 40.0 (3), 41.0 (4), 42.0 (3), 43.0 (2), 44.0
+    ## highest: 120.0, 121.0, 125.0, 131.0, 132.0
 
-![](cgm_analysis_files/figure-html/unnamed-chunk-8-1.png)<!-- -->
+![](README_files/figure-markdown_github/unnamed-chunk-8-1.png)
 
-```r
+``` r
 glucose %>% filter(apply(sapply(glucose$time,
                                 function(x) !(x %within% activity_intervals(activity_raw,"Sleep"))),
                          2,
@@ -286,69 +261,62 @@ glucose %>% filter(apply(sapply(glucose$time,
   DescTools::Desc(main = "Glucose Values While Awake")
 ```
 
-```
-## ------------------------------------------------------------------------- 
-## Describe . (tbl_df, tbl, data.frame):
-## 
-## data.frame:	2787 obs. of  1 variables
-## 
-##   Nr  ColName  Class    NAs        Levels
-##   1   value    numeric  17 (0.6%)        
-## 
-## 
-## ------------------------------------------------------------------------- 
-## Glucose Values While Awake
-## 
-##   length      n    NAs  unique      0s    mean  meanCI
-##    2'787  2'770     17     120       0   91.23   90.50
-##           99.4%   0.6%            0.0%           91.95
-##                                                       
-##      .05    .10    .25  median     .75     .90     .95
-##    63.00  69.00  79.00   90.00  102.00  117.00  127.00
-##                                                       
-##    range     sd  vcoef     mad     IQR    skew    kurt
-##   151.00  19.41   0.21   16.31   23.00    0.57    1.04
-##                                                       
-## lowest : 40.0 (3), 41.0 (4), 42.0 (3), 43.0 (2), 44.0 (5)
-## highest: 166.0 (2), 172.0, 187.0, 188.0, 191.0
-```
+    ## ------------------------------------------------------------------------- 
+    ## Describe . (tbl_df, tbl, data.frame):
+    ## 
+    ## data.frame:  2807 obs. of  1 variables
+    ## 
+    ##   Nr  ColName  Class    NAs        Levels
+    ##   1   value    numeric  17 (0.6%)        
+    ## 
+    ## 
+    ## ------------------------------------------------------------------------- 
+    ## Glucose Values While Awake
+    ## 
+    ##   length      n    NAs  unique      0s    mean  meanCI
+    ##    2'807  2'790     17     120       0   91.20   90.48
+    ##           99.4%   0.6%            0.0%           91.92
+    ##                                                       
+    ##      .05    .10    .25  median     .75     .90     .95
+    ##    63.00  69.00  79.00   90.00  102.00  117.00  127.00
+    ##                                                       
+    ##    range     sd  vcoef     mad     IQR    skew    kurt
+    ##   151.00  19.38   0.21   16.31   23.00    0.57    1.04
+    ##                                                       
+    ## lowest : 40.0 (3), 41.0 (4), 42.0 (3), 43.0 (2), 44.0 (5)
+    ## highest: 166.0 (2), 172.0, 187.0, 188.0, 191.0
 
-![](cgm_analysis_files/figure-html/unnamed-chunk-8-2.png)<!-- -->
+![](README_files/figure-markdown_github/unnamed-chunk-8-2.png)
 
-```r
+``` r
 glucose %>% filter(apply(sapply(glucose$time,
                                 function(x) x %within% activity_intervals(activity_raw,"Exercise")),2,any)) %>% select(value) %>% 
   DescTools::Desc(main = "Glucose Values While Exercising")
 ```
 
-```
-## ------------------------------------------------------------------------- 
-## Describe . (tbl_df, tbl, data.frame):
-## 
-## data.frame:	31 obs. of  1 variables
-## 
-##   Nr  ColName  Class    NAs       Levels
-##   1   value    numeric  1 (3.2%)        
-## 
-## 
-## ------------------------------------------------------------------------- 
-## Glucose Values While Exercising
-## 
-##   length      n    NAs  unique      0s    mean  meanCI
-##       31     30      1      27       0   92.20   85.11
-##           96.8%   3.2%            0.0%           99.29
-##                                                       
-##      .05    .10    .25  median     .75     .90     .95
-##    69.45  70.90  77.25   89.50  103.75  116.40  121.10
-##                                                       
-##    range     sd  vcoef     mad     IQR    skew    kurt
-##    77.00  18.98   0.21   20.02   26.50    0.67   -0.20
-##                                                       
-## lowest : 67.0, 69.0, 70.0, 71.0, 72.0
-## highest: 110.0, 116.0, 120.0, 122.0, 144.0
-```
+    ## ------------------------------------------------------------------------- 
+    ## Describe . (tbl_df, tbl, data.frame):
+    ## 
+    ## data.frame:  31 obs. of  1 variables
+    ## 
+    ##   Nr  ColName  Class    NAs       Levels
+    ##   1   value    numeric  1 (3.2%)        
+    ## 
+    ## 
+    ## ------------------------------------------------------------------------- 
+    ## Glucose Values While Exercising
+    ## 
+    ##   length      n    NAs  unique      0s    mean  meanCI
+    ##       31     30      1      27       0   92.20   85.11
+    ##           96.8%   3.2%            0.0%           99.29
+    ##                                                       
+    ##      .05    .10    .25  median     .75     .90     .95
+    ##    69.45  70.90  77.25   89.50  103.75  116.40  121.10
+    ##                                                       
+    ##    range     sd  vcoef     mad     IQR    skew    kurt
+    ##    77.00  18.98   0.21   20.02   26.50    0.67   -0.20
+    ##                                                       
+    ## lowest : 67.0, 69.0, 70.0, 71.0, 72.0
+    ## highest: 110.0, 116.0, 120.0, 122.0, 144.0
 
-![](cgm_analysis_files/figure-html/unnamed-chunk-8-3.png)<!-- -->
-
-
-
+![](README_files/figure-markdown_github/unnamed-chunk-8-3.png)
