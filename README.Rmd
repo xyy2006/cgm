@@ -1,9 +1,11 @@
 ---
 title: "Continuous Glucose Monitoring with Freestyle Libre"
 author: Richard Sprague
-date: 2019-01-29
+date: "`r Sys.Date()`" 
 output: github_document
 ---
+
+See [Continous Glucose Monitoring: Start Here](http://richardsprague.com/notes/continuous-glucose-monitoring/)
 
 I've been tracking my glucose levels 24 x 7 using a continuous glucose monitor from Abbot Labs called the [Freestyle Libre](https://www.freestylelibre.us/index.html). 
 
