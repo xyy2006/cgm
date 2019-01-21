@@ -15,11 +15,22 @@ This is a short R script I use for my analysis.
 
 ---
 
-First we read the data and put it into a tidy format in two dataframes:
+## Prerequisites
+
+Besides the working sensor, to run this script you'll need:
+
+* A registered account on Freestyle's official site: [libreview.com](https://www2.libreview.com/)
+* Data downloaded from the Libreview site.  (I download it and convert to XLSX format in the file "Librelink.xlsx")
+* A separate activity file to register your food, exercise, sleep, and other events. (Another XLSX file I call "Activity.XLSX")
+
+See examples of all my raw data files in [.\librelink\]
+
+One you have downloaded the raw Librelink data and created the activity file, you must read the results into two dataframes:
 
 `libre_raw` : the raw output from a Librelink CSV file. You could just read.csv straight from the CSV if you like.
 
 `activity_raw`: your file containing the metadata about whatever you'd like to track. The following script assumes you'll have variables for `Sleep`, `Exercise`, `Food`, and a catch-all called `Event`. 
+
 
 ```{r echo = FALSE, message = FALSE, warning = FALSE}
 library(readxl)
@@ -35,7 +46,7 @@ activity_raw <- rbind(activity_raw_2018,activity_raw_2019)
 
 ```
 
-Now clean up the data and then set up a few other useful variables.
+Now clean up the data and then set up a few other useful variables. Be careful about time zones: the raw data comes as UTC time, so you'll need to convert everything to your local time zone if you want the following charts to match.
 
 ```{r, message = FALSE, warning = FALSE}
 library(tidyverse)
@@ -154,7 +165,7 @@ startDate <- now() - days(2) #min(glucose$time)
 cgm_display(startDate,startDate + days(2))
 ```
 
-Here's just for a single day:
+Here's just for a single day. Note that the commented-out lines will let you output to a PDF file if you like.
 
 ```{r, message = FALSE, warning = FALSE}
 

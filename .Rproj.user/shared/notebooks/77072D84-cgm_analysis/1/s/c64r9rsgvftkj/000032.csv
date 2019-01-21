@@ -1,2 +1,0 @@
-"0","foods_experiment <- food_effect(foodlist=""Ice Cream"") "
-"0","foods_experiment %>% group_by(experiment) %>% mutate(delta = (time - min(time))/60) %>% ggplot(aes(x=delta,y=value, color = experiment)) + geom_line(size = 2) + scale_x_continuous() + labs(title = ""Glucose after eating ice cream"", x = ""Minutes"", y = ""mg/dL"")"

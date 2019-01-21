@@ -1,2 +1,0 @@
-"0","cgm_display(start = activity_raw %>% filter(Comment == ""Apple juice"") %>% .$Start, "
-"0","            end = activity_raw %>% filter(Comment == ""Apple juice"") %>% .$Start + hours(2))"

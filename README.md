@@ -1,7 +1,7 @@
 Continuous Glucose Monitoring with Freestyle Libre
 ================
 Richard Sprague
-2019-01-20
+2019-01-21
 
 See [Continous Glucose Monitoring: Start Here](http://richardsprague.com/notes/continuous-glucose-monitoring/)
 
@@ -13,13 +13,24 @@ This is a short R script I use for my analysis.
 
 ------------------------------------------------------------------------
 
-First we read the data and put it into a tidy format in two dataframes:
+Prerequisites
+-------------
+
+Besides the working sensor, to run this script you'll need:
+
+-   A registered account on Freestyle's official site: [libreview.com](https://www2.libreview.com/)
+-   Data downloaded from the Libreview site. (I download it and convert to XLSX format in the file "Librelink.xlsx")
+-   A separate activity file to register your food, exercise, sleep, and other events. (Another XLSX file I call "Activity.XLSX")
+
+See examples of all my raw data files in \[.\]
+
+One you have downloaded the raw Librelink data and created the activity file, you must read the results into two dataframes:
 
 `libre_raw` : the raw output from a Librelink CSV file. You could just read.csv straight from the CSV if you like.
 
 `activity_raw`: your file containing the metadata about whatever you'd like to track. The following script assumes you'll have variables for `Sleep`, `Exercise`, `Food`, and a catch-all called `Event`.
 
-Now clean up the data and then set up a few other useful variables.
+Now clean up the data and then set up a few other useful variables. Be careful about time zones: the raw data comes as UTC time, so you'll need to convert everything to your local time zone if you want the following charts to match.
 
 ``` r
 library(tidyverse)
@@ -135,7 +146,7 @@ cgm_display(startDate,startDate + days(2))
 
 ![](README_files/figure-markdown_github/unnamed-chunk-4-1.png)
 
-Here's just for a single day:
+Here's just for a single day. Note that the commented-out lines will let you output to a PDF file if you like.
 
 ``` r
 #pdf("icecream.pdf", width = 11, height = 8.5)
@@ -196,6 +207,7 @@ Here's how I look when eating specific foods:
 | Latte24      |         100|          74|      26|
 | Latte25      |          99|          71|      28|
 | Latte26      |         106|          84|      22|
+| Latte27      |         105|          77|      28|
 
 ![](README_files/figure-markdown_github/unnamed-chunk-7-16.png)
 
@@ -232,7 +244,7 @@ glucose %>% filter(apply(sapply(glucose$time,
     ## ------------------------------------------------------------------------- 
     ## Describe . (tbl_df, tbl, data.frame):
     ## 
-    ## data.frame:  775 obs. of  1 variables
+    ## data.frame:  807 obs. of  1 variables
     ## 
     ##   Nr  ColName  Class    NAs  Levels
     ##   1   value    numeric  .          
@@ -242,14 +254,14 @@ glucose %>% filter(apply(sapply(glucose$time,
     ## Glucose Values While Sleeping
     ## 
     ##   length       n    NAs  unique     0s   mean  meanCI
-    ##      775     775      0      80      0  79.87   78.88
-    ##           100.0%   0.0%           0.0%          80.86
+    ##      807     807      0      81      0  79.87   78.91
+    ##           100.0%   0.0%           0.0%          80.83
     ##                                                      
     ##      .05     .10    .25  median    .75    .90     .95
-    ##    54.00   62.40  72.00   81.00  87.50  97.00  102.00
+    ##    54.00   63.00  72.00   81.00  87.00  96.40  102.00
     ##                                                      
     ##    range      sd  vcoef     mad    IQR   skew    kurt
-    ##    92.00   14.02   0.18   10.38  15.50  -0.13    0.97
+    ##    92.00   13.93   0.17   10.38  15.00  -0.10    1.00
     ##                                                      
     ## lowest : 40.0 (3), 41.0 (4), 42.0 (3), 43.0 (2), 44.0
     ## highest: 120.0, 121.0, 125.0, 131.0, 132.0
@@ -267,7 +279,7 @@ glucose %>% filter(apply(sapply(glucose$time,
     ## ------------------------------------------------------------------------- 
     ## Describe . (tbl_df, tbl, data.frame):
     ## 
-    ## data.frame:  2869 obs. of  1 variables
+    ## data.frame:  2958 obs. of  1 variables
     ## 
     ##   Nr  ColName  Class    NAs        Levels
     ##   1   value    numeric  17 (0.6%)        
@@ -277,14 +289,14 @@ glucose %>% filter(apply(sapply(glucose$time,
     ## Glucose Values While Awake
     ## 
     ##   length      n    NAs  unique      0s    mean  meanCI
-    ##    2'869  2'852     17     120       0   91.00   90.30
-    ##           99.4%   0.6%            0.0%           91.71
+    ##    2'958  2'941     17     120       0   91.03   90.34
+    ##           99.4%   0.6%            0.0%           91.73
     ##                                                       
     ##      .05    .10    .25  median     .75     .90     .95
     ##    63.00  69.00  79.00   89.00  101.00  116.00  127.00
     ##                                                       
     ##    range     sd  vcoef     mad     IQR    skew    kurt
-    ##   151.00  19.26   0.21   16.31   22.00    0.59    1.08
+    ##   151.00  19.23   0.21   16.31   22.00    0.60    1.06
     ##                                                       
     ## lowest : 40.0 (3), 41.0 (4), 42.0 (3), 43.0 (2), 44.0 (5)
     ## highest: 166.0 (2), 172.0, 187.0, 188.0, 191.0
@@ -300,24 +312,24 @@ glucose %>% filter(apply(sapply(glucose$time,
     ## ------------------------------------------------------------------------- 
     ## Describe . (tbl_df, tbl, data.frame):
     ## 
-    ## data.frame:  31 obs. of  1 variables
+    ## data.frame:  34 obs. of  1 variables
     ## 
     ##   Nr  ColName  Class    NAs       Levels
-    ##   1   value    numeric  1 (3.2%)        
+    ##   1   value    numeric  1 (2.9%)        
     ## 
     ## 
     ## ------------------------------------------------------------------------- 
     ## Glucose Values While Exercising
     ## 
     ##   length      n    NAs  unique      0s    mean  meanCI
-    ##       31     30      1      27       0   92.20   85.11
-    ##           96.8%   3.2%            0.0%           99.29
+    ##       34     33      1      28       0   91.76   85.33
+    ##           97.1%   2.9%            0.0%           98.18
     ##                                                       
     ##      .05    .10    .25  median     .75     .90     .95
-    ##    69.45  70.90  77.25   89.50  103.75  116.40  121.10
+    ##    69.60  71.20  78.00   87.00  100.00  114.80  120.80
     ##                                                       
     ##    range     sd  vcoef     mad     IQR    skew    kurt
-    ##    77.00  18.98   0.21   20.02   26.50    0.67   -0.20
+    ##    77.00  18.12   0.20   19.27   22.00    0.77    0.13
     ##                                                       
     ## lowest : 67.0, 69.0, 70.0, 71.0, 72.0
     ## highest: 110.0, 116.0, 120.0, 122.0, 144.0

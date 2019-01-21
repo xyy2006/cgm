@@ -1,1 +1,0 @@
-"0","food_effect(foodlist) %>% group_by(experiment) %>% summarize(max(value), min(value), change = max(value)-min(value))  %>% knitr::kable(caption = ""Glucose Changes from drinking a latte"")"

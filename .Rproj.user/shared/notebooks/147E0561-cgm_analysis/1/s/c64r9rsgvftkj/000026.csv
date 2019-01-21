@@ -1,4 +1,0 @@
-"0","# "
-"0","## ramen"
-"0","foodlist <- c(""Ramen"", ""donut"")"
-"0","food_effect(foodlist, timelength = hours(2)) %>% group_by(experiment) %>% mutate(delta = (time - min(time))/60) %>% ggplot(aes(x=delta,y=value, color = experiment)) + geom_line(size = 2) + scale_x_continuous() + labs(title = ""Glucose after eating instant ramen"", x = ""Minutes"", y = ""mg/dL"")"

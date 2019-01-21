@@ -1,4 +1,0 @@
-"0","# "
-"0","## Pasta"
-"0","foodlist <- c(""Pesto pasta"",""Pasta whole wheat w/tomato"",  ""Pasta mushroom chicken"")"
-"0","food_effect(foodlist) %>% group_by(experiment) %>% mutate(delta = (time - min(time))/60) %>% ggplot(aes(x=delta,y=value, color = experiment)) + geom_line(size = 2) + scale_x_continuous() + labs(title = ""Glucose after eating pasta"", x = ""Minutes"", y = ""mg/dL"")"
