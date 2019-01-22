@@ -1,7 +1,7 @@
 Continuous Glucose Monitoring with Freestyle Libre
 ================
 Richard Sprague
-2019-01-21
+2019-01-22
 
 See [Continous Glucose Monitoring: Start Here](http://richardsprague.com/notes/continuous-glucose-monitoring/)
 
@@ -208,6 +208,7 @@ Here's how I look when eating specific foods:
 | Latte25      |          99|          71|      28|
 | Latte26      |         106|          84|      22|
 | Latte27      |         105|          77|      28|
+| Latte28      |          88|          88|       0|
 
 ![](README_files/figure-markdown_github/unnamed-chunk-7-16.png)
 
@@ -244,7 +245,7 @@ glucose %>% filter(apply(sapply(glucose$time,
     ## ------------------------------------------------------------------------- 
     ## Describe . (tbl_df, tbl, data.frame):
     ## 
-    ## data.frame:  807 obs. of  1 variables
+    ## data.frame:  837 obs. of  1 variables
     ## 
     ##   Nr  ColName  Class    NAs  Levels
     ##   1   value    numeric  .          
@@ -254,17 +255,17 @@ glucose %>% filter(apply(sapply(glucose$time,
     ## Glucose Values While Sleeping
     ## 
     ##   length       n    NAs  unique     0s   mean  meanCI
-    ##      807     807      0      81      0  79.87   78.91
-    ##           100.0%   0.0%           0.0%          80.83
+    ##      837     837      0      81      0  79.95   79.01
+    ##           100.0%   0.0%           0.0%          80.90
     ##                                                      
     ##      .05     .10    .25  median    .75    .90     .95
-    ##    54.00   63.00  72.00   81.00  87.00  96.40  102.00
+    ##    54.80   63.00  72.00   80.00  87.00  96.40  102.00
     ##                                                      
     ##    range      sd  vcoef     mad    IQR   skew    kurt
-    ##    92.00   13.93   0.17   10.38  15.00  -0.10    1.00
+    ##    92.00   13.92   0.17   10.38  15.00  -0.04    1.13
     ##                                                      
     ## lowest : 40.0 (3), 41.0 (4), 42.0 (3), 43.0 (2), 44.0
-    ## highest: 120.0, 121.0, 125.0, 131.0, 132.0
+    ## highest: 120.0, 121.0, 125.0, 131.0, 132.0 (2)
 
 ![](README_files/figure-markdown_github/unnamed-chunk-8-1.png)
 
@@ -279,7 +280,7 @@ glucose %>% filter(apply(sapply(glucose$time,
     ## ------------------------------------------------------------------------- 
     ## Describe . (tbl_df, tbl, data.frame):
     ## 
-    ## data.frame:  2958 obs. of  1 variables
+    ## data.frame:  3052 obs. of  1 variables
     ## 
     ##   Nr  ColName  Class    NAs        Levels
     ##   1   value    numeric  17 (0.6%)        
@@ -289,14 +290,14 @@ glucose %>% filter(apply(sapply(glucose$time,
     ## Glucose Values While Awake
     ## 
     ##   length      n    NAs  unique      0s    mean  meanCI
-    ##    2'958  2'941     17     120       0   91.03   90.34
-    ##           99.4%   0.6%            0.0%           91.73
+    ##    3'052  3'035     17     120       0   91.03   90.35
+    ##           99.4%   0.6%            0.0%           91.71
     ##                                                       
     ##      .05    .10    .25  median     .75     .90     .95
     ##    63.00  69.00  79.00   89.00  101.00  116.00  127.00
     ##                                                       
     ##    range     sd  vcoef     mad     IQR    skew    kurt
-    ##   151.00  19.23   0.21   16.31   22.00    0.60    1.06
+    ##   151.00  19.10   0.21   16.31   22.00    0.60    1.08
     ##                                                       
     ## lowest : 40.0 (3), 41.0 (4), 42.0 (3), 43.0 (2), 44.0 (5)
     ## highest: 166.0 (2), 172.0, 187.0, 188.0, 191.0
