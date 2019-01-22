@@ -165,19 +165,19 @@ The final full day of the dataset:
 cgm_display(start = max(glucose_raw$time)-days(1), end = max(glucose_raw$time))
 ```
 
-![](README_files/figure-markdown_github/unnamed-chunk-6-1.png)
+![](README_files/figure-markdown_github/lastestCGMResult-1.png)
 
 Food types
 ----------
 
 Here's how I look when eating specific foods:
 
-![](README_files/figure-markdown_github/unnamed-chunk-7-1.png)![](README_files/figure-markdown_github/unnamed-chunk-7-2.png)![](README_files/figure-markdown_github/unnamed-chunk-7-3.png)![](README_files/figure-markdown_github/unnamed-chunk-7-4.png)![](README_files/figure-markdown_github/unnamed-chunk-7-5.png)![](README_files/figure-markdown_github/unnamed-chunk-7-6.png)![](README_files/figure-markdown_github/unnamed-chunk-7-7.png)![](README_files/figure-markdown_github/unnamed-chunk-7-8.png)![](README_files/figure-markdown_github/unnamed-chunk-7-9.png)![](README_files/figure-markdown_github/unnamed-chunk-7-10.png)![](README_files/figure-markdown_github/unnamed-chunk-7-11.png)![](README_files/figure-markdown_github/unnamed-chunk-7-12.png)
+![](README_files/figure-markdown_github/unnamed-chunk-6-1.png)![](README_files/figure-markdown_github/unnamed-chunk-6-2.png)![](README_files/figure-markdown_github/unnamed-chunk-6-3.png)![](README_files/figure-markdown_github/unnamed-chunk-6-4.png)![](README_files/figure-markdown_github/unnamed-chunk-6-5.png)![](README_files/figure-markdown_github/unnamed-chunk-6-6.png)![](README_files/figure-markdown_github/unnamed-chunk-6-7.png)![](README_files/figure-markdown_github/unnamed-chunk-6-8.png)![](README_files/figure-markdown_github/unnamed-chunk-6-9.png)![](README_files/figure-markdown_github/unnamed-chunk-6-10.png)![](README_files/figure-markdown_github/unnamed-chunk-6-11.png)![](README_files/figure-markdown_github/unnamed-chunk-6-12.png)
 
     ## Scale for 'x' is already present. Adding another scale for 'x', which
     ## will replace the existing scale.
 
-![](README_files/figure-markdown_github/unnamed-chunk-7-13.png)![](README_files/figure-markdown_github/unnamed-chunk-7-14.png)![](README_files/figure-markdown_github/unnamed-chunk-7-15.png)
+![](README_files/figure-markdown_github/unnamed-chunk-6-13.png)![](README_files/figure-markdown_github/unnamed-chunk-6-14.png)![](README_files/figure-markdown_github/unnamed-chunk-6-15.png)
 
 | experiment   |  max(value)|  min(value)|  change|
 |:-------------|-----------:|-----------:|-------:|
@@ -208,9 +208,9 @@ Here's how I look when eating specific foods:
 | Latte25      |          99|          71|      28|
 | Latte26      |         106|          84|      22|
 | Latte27      |         105|          77|      28|
-| Latte28      |          88|          88|       0|
+| Latte28      |         105|          88|      17|
 
-![](README_files/figure-markdown_github/unnamed-chunk-7-16.png)
+![](README_files/figure-markdown_github/unnamed-chunk-6-16.png)
 
 Basic Statistics
 ----------------
@@ -267,7 +267,7 @@ glucose %>% filter(apply(sapply(glucose$time,
     ## lowest : 40.0 (3), 41.0 (4), 42.0 (3), 43.0 (2), 44.0
     ## highest: 120.0, 121.0, 125.0, 131.0, 132.0 (2)
 
-![](README_files/figure-markdown_github/unnamed-chunk-8-1.png)
+![](README_files/figure-markdown_github/unnamed-chunk-7-1.png)
 
 ``` r
 glucose %>% filter(apply(sapply(glucose$time,
@@ -280,7 +280,7 @@ glucose %>% filter(apply(sapply(glucose$time,
     ## ------------------------------------------------------------------------- 
     ## Describe . (tbl_df, tbl, data.frame):
     ## 
-    ## data.frame:  3052 obs. of  1 variables
+    ## data.frame:  3086 obs. of  1 variables
     ## 
     ##   Nr  ColName  Class    NAs        Levels
     ##   1   value    numeric  17 (0.6%)        
@@ -290,19 +290,19 @@ glucose %>% filter(apply(sapply(glucose$time,
     ## Glucose Values While Awake
     ## 
     ##   length      n    NAs  unique      0s    mean  meanCI
-    ##    3'052  3'035     17     120       0   91.03   90.35
-    ##           99.4%   0.6%            0.0%           91.71
+    ##    3'086  3'069     17     120       0   91.08   90.40
+    ##           99.4%   0.6%            0.0%           91.75
     ##                                                       
     ##      .05    .10    .25  median     .75     .90     .95
-    ##    63.00  69.00  79.00   89.00  101.00  116.00  127.00
+    ##    64.00  69.00  79.00   89.00  101.00  116.00  127.00
     ##                                                       
     ##    range     sd  vcoef     mad     IQR    skew    kurt
-    ##   151.00  19.10   0.21   16.31   22.00    0.60    1.08
+    ##   151.00  19.04   0.21   16.31   22.00    0.60    1.09
     ##                                                       
     ## lowest : 40.0 (3), 41.0 (4), 42.0 (3), 43.0 (2), 44.0 (5)
     ## highest: 166.0 (2), 172.0, 187.0, 188.0, 191.0
 
-![](README_files/figure-markdown_github/unnamed-chunk-8-2.png)
+![](README_files/figure-markdown_github/unnamed-chunk-7-2.png)
 
 ``` r
 glucose %>% filter(apply(sapply(glucose$time,
@@ -335,4 +335,4 @@ glucose %>% filter(apply(sapply(glucose$time,
     ## lowest : 67.0, 69.0, 70.0, 71.0, 72.0
     ## highest: 110.0, 116.0, 120.0, 122.0, 144.0
 
-![](README_files/figure-markdown_github/unnamed-chunk-8-3.png)
+![](README_files/figure-markdown_github/unnamed-chunk-7-3.png)
