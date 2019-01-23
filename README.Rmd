@@ -23,7 +23,7 @@ Besides the working sensor, to run this script you'll need:
 * Data downloaded from the Libreview site.  (I download it and convert to XLSX format in the file "Librelink.xlsx")
 * A separate activity file to register your food, exercise, sleep, and other events. (Another XLSX file I call "Activity.XLSX")
 
-See examples of all my raw data files in [.\librelink\]
+See examples of all my raw data files in [.\librelink\](.\librelink\)
 
 One you have downloaded the raw Librelink data and created the activity file, you must read the results into two dataframes:
 
@@ -203,8 +203,8 @@ food_effect(foodlist) %>% group_by(experiment) %>% mutate(delta = (time - min(ti
 
 
 ## Beer
-foodlist <- activity_raw %>% dplyr::filter(str_detect(str_to_lower(activity_raw$Comment),pattern = "beer")) %>% .$Comment
-food_effect(foodlist) %>% group_by(experiment) %>% mutate(delta = (time - min(time))/60) %>% ggplot(aes(x=delta,y=value, color = experiment)) + geom_line(size = 2) + scale_x_continuous() + labs(title = "Glucose after drinking beer", x = "Minutes", y = "mg/dL")
+foodlist <- activity_raw %>% dplyr::filter(str_detect(str_to_lower(activity_raw$Comment),pattern = "beer \\(empty stomach\\)")) %>% .$Comment
+food_effect(foodlist, timelength = lubridate::hours(1)) %>% group_by(experiment) %>% mutate(delta = (time - min(time))/60) %>% ggplot(aes(x=delta,y=value, color = experiment)) + geom_line(size = 2) + scale_x_continuous() + labs(title = "Glucose after drinking beer", x = "Minutes", y = "mg/dL")
 # 
 
 ## Pasta
@@ -256,13 +256,13 @@ cgm_display(start = activity_raw %>% filter(Comment == "Blueberry-banana") %>% p
 
 
 foodlist <- activity_raw %>% dplyr::filter(str_detect(str_to_lower(activity_raw$Comment),pattern = "latte")) %>% .$Comment
-
-food_effect(foodlist) %>% group_by(experiment) %>% mutate(delta = (time - min(time))/60) %>% ggplot(aes(x=delta,y=value, color = experiment)) + geom_line(size = 2) + scale_x_continuous() + labs(title = "Glucose after drinking a latte", x = "Minutes", y = "mg/dL")
+# 
+# food_effect(foodlist) %>% group_by(experiment) %>% mutate(delta = (time - min(time))/60) %>% ggplot(aes(x=delta,y=value, color = experiment)) + geom_line(size = 2) + scale_x_continuous() + labs(title = "Glucose after drinking a latte", x = "Minutes", y = "mg/dL")
 
 food_effect(c("CBD")) %>% group_by(experiment) %>% mutate(delta = (time - min(time))/60) %>% ggplot(aes(x=delta,y=value, color = experiment)) + geom_line(size = 2) + scale_x_continuous() + labs(title = "Glucose after CBD", x = "Minutes", y = "mg/dL")
 
-food_effect(foodlist) %>% group_by(experiment) %>% summarize(max(value), min(value), change = max(value)-min(value))  %>% knitr::kable(caption = "Glucose Changes from drinking a latte")
-
+# food_effect(foodlist) %>% group_by(experiment) %>% summarize(max(value), min(value), change = max(value)-min(value))  %>% knitr::kable(caption = "Glucose Changes from drinking a latte")
+# 
 
 
 foodlist <- c("Salmon")
