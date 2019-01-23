@@ -5,6 +5,6 @@ account: personalscience
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 614122
-bundleId: 1817940
+bundleId: 1832819
 url: https://personalscience.shinyapps.io/librelink/
-when: 1547654817.81977
+when: 1548279606.39535

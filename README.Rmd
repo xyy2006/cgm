@@ -9,6 +9,8 @@ See [Continous Glucose Monitoring: Start Here](http://richardsprague.com/notes/c
 
 I've been tracking my glucose levels 24 x 7 using a continuous glucose monitor from Abbot Labs called the [Freestyle Libre](https://www.freestylelibre.us/index.html). 
 
+View a Shiny version of my current data at [https://personalscience.shinyapps.io/librelink/](https://personalscience.shinyapps.io/librelink/).  [[Source](https://github.com/richardsprague/cgm/tree/master/librelink)]
+
 Read (and edit!) my [Continuous Glucose Monitoring Hackers Guide](https://docs.google.com/document/d/11DFx0E-ZQ-r_D1SqXvMtvkDCjx6j7NevrE43WSaKyJE/edit?usp=sharing) for details for how to get started, plus as many resources as I know about other apps and links that you might find useful for beginning your own CGM analysis.
 
 This is a short R script I use for my analysis.
@@ -23,7 +25,7 @@ Besides the working sensor, to run this script you'll need:
 * Data downloaded from the Libreview site.  (I download it and convert to XLSX format in the file "Librelink.xlsx")
 * A separate activity file to register your food, exercise, sleep, and other events. (Another XLSX file I call "Activity.XLSX")
 
-See examples of all my raw data files in [.\librelink\](.\librelink\)
+See examples of all my raw data files in the [librelink](https://github.com/richardsprague/cgm/tree/master/librelink) directory.
 
 One you have downloaded the raw Librelink data and created the activity file, you must read the results into two dataframes:
 

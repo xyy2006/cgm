@@ -7,6 +7,8 @@ See [Continous Glucose Monitoring: Start Here](http://richardsprague.com/notes/c
 
 I've been tracking my glucose levels 24 x 7 using a continuous glucose monitor from Abbot Labs called the [Freestyle Libre](https://www.freestylelibre.us/index.html).
 
+View a Shiny version of my current data at <https://personalscience.shinyapps.io/librelink/>. \[[Source](https://github.com/richardsprague/cgm/tree/master/librelink)\]
+
 Read (and edit!) my [Continuous Glucose Monitoring Hackers Guide](https://docs.google.com/document/d/11DFx0E-ZQ-r_D1SqXvMtvkDCjx6j7NevrE43WSaKyJE/edit?usp=sharing) for details for how to get started, plus as many resources as I know about other apps and links that you might find useful for beginning your own CGM analysis.
 
 This is a short R script I use for my analysis.
@@ -22,7 +24,7 @@ Besides the working sensor, to run this script you'll need:
 -   Data downloaded from the Libreview site. (I download it and convert to XLSX format in the file "Librelink.xlsx")
 -   A separate activity file to register your food, exercise, sleep, and other events. (Another XLSX file I call "Activity.XLSX")
 
-See examples of all my raw data files in \[.\](.)
+See examples of all my raw data files in the [librelink](https://github.com/richardsprague/cgm/tree/master/librelink) directory.
 
 One you have downloaded the raw Librelink data and created the activity file, you must read the results into two dataframes:
 
@@ -247,7 +249,7 @@ glucose %>% filter(apply(sapply(glucose$time,
     ## ------------------------------------------------------------------------- 
     ## Describe . (tbl_df, tbl, data.frame):
     ## 
-    ## data.frame:  3170 obs. of  1 variables
+    ## data.frame:  3179 obs. of  1 variables
     ## 
     ##   Nr  ColName  Class    NAs        Levels
     ##   1   value    numeric  17 (0.5%)        
@@ -257,14 +259,14 @@ glucose %>% filter(apply(sapply(glucose$time,
     ## Glucose Values While Awake
     ## 
     ##   length      n    NAs  unique      0s    mean  meanCI
-    ##    3'170  3'153     17     120       0   90.93   90.27
+    ##    3'179  3'162     17     120       0   90.93   90.27
     ##           99.5%   0.5%            0.0%           91.59
     ##                                                       
     ##      .05    .10    .25  median     .75     .90     .95
-    ##    64.00  70.00  79.00   89.00  101.00  116.00  126.40
+    ##    64.00  70.00  79.00   89.00  101.00  116.00  126.00
     ##                                                       
     ##    range     sd  vcoef     mad     IQR    skew    kurt
-    ##   151.00  18.86   0.21   16.31   22.00    0.62    1.16
+    ##   151.00  18.84   0.21   16.31   22.00    0.62    1.17
     ##                                                       
     ## lowest : 40.0 (3), 41.0 (4), 42.0 (3), 43.0 (2), 44.0 (5)
     ## highest: 166.0 (2), 172.0, 187.0, 188.0, 191.0
