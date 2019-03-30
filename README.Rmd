@@ -39,12 +39,12 @@ library(readxl)
 libre_raw <- readxl::read_excel(file.path(Sys.getenv("ONEDRIVE"),"Sprague 2019","Health 2019","Librelink.xlsx"))
 libre_raw$`Meter Timestamp` <- lubridate::force_tz(libre_raw$`Meter Timestamp`, "US/Pacific")
 
-activity_raw_2019 <- readxl::read_excel(file.path(Sys.getenv("ONEDRIVE"),"Sprague 2019","Health 2019","Rik Activity 2019.xlsx"),
+activity_raw_2019 <- readxl::read_excel(file.path(Sys.getenv("ONEDRIVE"),"Sprague 2019","Health 2019","Rik Activity 2019.xlsx"),na = "NA",
                                    sheet = "2019")
 activity_raw_2018 <- readxl::read_excel(file.path(Sys.getenv("ONEDRIVE"),"Sprague 2019","Health 2019","Rik Activity 2019.xlsx"),
                                    sheet = "2018")
 
-activity_raw <- rbind(activity_raw_2018,activity_raw_2019)
+activity_raw <- dplyr::full_join(activity_raw_2018,activity_raw_2019)
 
 ```
 
@@ -73,6 +73,10 @@ glucose$value <- dplyr::if_else(is.na(glucose$scan),glucose$hist,glucose$scan)
 
 # apply correction for faulty 2019-01-08 sensor
 #glucose$value <- dplyr::if_else(glucose$time>as_datetime("2019-01-08"),glucose$value+35,glucose$value)
+
+# apply correction for faulty 2019-03-24 sensor
+#glucose$value <- dplyr::if_else(glucose$time>as_datetime("2019-03-23"),glucose$value+35,glucose$value)
+
 
 glucose_raw <- glucose
 
@@ -210,7 +214,7 @@ food_effect(foodlist, timelength = lubridate::hours(1)) %>% group_by(experiment)
 # 
 
 ## Pasta
-foodlist <- c("Pesto pasta","Pasta whole wheat w/tomato",  "Pasta mushroom chicken")
+foodlist <- c("Pesto pasta","Pasta (pesto)", "Pasta whole wheat w/tomato",  "Pasta mushroom chicken")
 food_effect(foodlist) %>% group_by(experiment) %>% mutate(delta = (time - min(time))/60) %>% ggplot(aes(x=delta,y=value, color = experiment)) + geom_line(size = 2) + scale_x_continuous() + labs(title = "Glucose after eating pasta", x = "Minutes", y = "mg/dL")
 # 
 
