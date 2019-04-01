@@ -16,7 +16,7 @@ libre_raw <- readxl::read_excel("Librelink.xlsx")
 libre_raw$`Meter Timestamp` <- lubridate::force_tz(libre_raw$`Meter Timestamp`, "US/Pacific")
 
 
-activity_raw <- rbind(readxl::read_excel("Rik Activity 2019.xlsx", sheet = "2018"),
+activity_raw <- dplyr::full_join(readxl::read_excel("Rik Activity 2019.xlsx", sheet = "2018"),
                       readxl::read_excel("Rik Activity 2019.xlsx", sheet = "2019"))
 
 activity_raw$Start <- lubridate::force_tz(activity_raw$Start, "US/Pacific")

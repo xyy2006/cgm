@@ -243,6 +243,16 @@ ggplot(data = glucose_raw %>% filter(time > from
   # scale_x_continuous() + 
   labs(title = "Glucose after drinking apple juice", x = "Minutes", y = "mg/dL")
 
+from <- activity_raw %>% filter(Comment == "Baguette") %>% .$Start
+ggplot(data = glucose_raw %>% filter(time > from
+                       & time < (from + hours(2))),
+       aes(x=time,y=value)) + geom_line(size=2, color = "red") + glucose_target_gg +
+  # scale_x_continuous() + 
+  labs(title = "Glucose after a baguette", x = "Minutes", y = "mg/dL")
+
+
+
+
 cgm_display(start = activity_raw %>% filter(Comment == "Apple juice") %>% .$Start, 
             end = activity_raw %>% filter(Comment == "Apple juice") %>% .$Start + hours(2))
 

@@ -1,7 +1,7 @@
 Continuous Glucose Monitoring with Freestyle Libre
 ================
 Richard Sprague
-2019-03-31
+2019-04-01
 
 See [Continous Glucose Monitoring: Start Here](http://richardsprague.com/notes/continuous-glucose-monitoring/)
 
@@ -178,12 +178,12 @@ Food types
 
 Here's how I look when eating specific foods:
 
-![](README_files/figure-markdown_github/unnamed-chunk-6-1.png)![](README_files/figure-markdown_github/unnamed-chunk-6-2.png)![](README_files/figure-markdown_github/unnamed-chunk-6-3.png)![](README_files/figure-markdown_github/unnamed-chunk-6-4.png)![](README_files/figure-markdown_github/unnamed-chunk-6-5.png)![](README_files/figure-markdown_github/unnamed-chunk-6-6.png)![](README_files/figure-markdown_github/unnamed-chunk-6-7.png)![](README_files/figure-markdown_github/unnamed-chunk-6-8.png)![](README_files/figure-markdown_github/unnamed-chunk-6-9.png)![](README_files/figure-markdown_github/unnamed-chunk-6-10.png)![](README_files/figure-markdown_github/unnamed-chunk-6-11.png)![](README_files/figure-markdown_github/unnamed-chunk-6-12.png)
+![](README_files/figure-markdown_github/unnamed-chunk-6-1.png)![](README_files/figure-markdown_github/unnamed-chunk-6-2.png)![](README_files/figure-markdown_github/unnamed-chunk-6-3.png)![](README_files/figure-markdown_github/unnamed-chunk-6-4.png)![](README_files/figure-markdown_github/unnamed-chunk-6-5.png)![](README_files/figure-markdown_github/unnamed-chunk-6-6.png)![](README_files/figure-markdown_github/unnamed-chunk-6-7.png)![](README_files/figure-markdown_github/unnamed-chunk-6-8.png)![](README_files/figure-markdown_github/unnamed-chunk-6-9.png)![](README_files/figure-markdown_github/unnamed-chunk-6-10.png)![](README_files/figure-markdown_github/unnamed-chunk-6-11.png)![](README_files/figure-markdown_github/unnamed-chunk-6-12.png)![](README_files/figure-markdown_github/unnamed-chunk-6-13.png)
 
     ## Scale for 'x' is already present. Adding another scale for 'x', which
     ## will replace the existing scale.
 
-![](README_files/figure-markdown_github/unnamed-chunk-6-13.png)![](README_files/figure-markdown_github/unnamed-chunk-6-14.png)![](README_files/figure-markdown_github/unnamed-chunk-6-15.png)
+![](README_files/figure-markdown_github/unnamed-chunk-6-14.png)![](README_files/figure-markdown_github/unnamed-chunk-6-15.png)![](README_files/figure-markdown_github/unnamed-chunk-6-16.png)
 
 Basic Statistics
 ----------------
@@ -218,7 +218,7 @@ glucose %>% filter(apply(sapply(glucose$time,
     ## ------------------------------------------------------------------------- 
     ## Describe . (tbl_df, tbl, data.frame):
     ## 
-    ## data.frame:  1075 obs. of  1 variables
+    ## data.frame:  1105 obs. of  1 variables
     ## 
     ##   Nr  ColName  Class    NAs  Levels
     ##   1   value    numeric  .          
@@ -228,17 +228,17 @@ glucose %>% filter(apply(sapply(glucose$time,
     ## Glucose Values While Sleeping
     ## 
     ##   length       n    NAs  unique     0s   mean  meanCI
-    ##    1'075   1'075      0      82      0  76.36   75.42
-    ##           100.0%   0.0%           0.0%          77.31
+    ##    1'105   1'105      0      83      0  76.41   75.47
+    ##           100.0%   0.0%           0.0%          77.34
     ##                                                      
     ##      .05     .10    .25  median    .75    .90     .95
-    ##    45.00   53.40  68.00   78.00  86.00  94.00  100.00
+    ##    46.00   54.00  68.00   78.00  86.00  94.00  100.00
     ##                                                      
     ##    range      sd  vcoef     mad    IQR   skew    kurt
-    ##    92.00   15.81   0.21   11.86  18.00  -0.22    0.40
+    ##    92.00   15.84   0.21   13.34  18.00  -0.18    0.41
     ##                                                      
     ## lowest : 40.0 (31), 41.0 (5), 42.0 (4), 43.0 (3), 44.0 (3)
-    ## highest: 120.0, 121.0, 125.0, 131.0, 132.0 (2)
+    ## highest: 121.0, 122.0, 125.0, 131.0, 132.0 (2)
 
 ![](README_files/figure-markdown_github/unnamed-chunk-7-1.png)
 
@@ -253,24 +253,24 @@ glucose %>% filter(apply(sapply(glucose$time,
     ## ------------------------------------------------------------------------- 
     ## Describe . (tbl_df, tbl, data.frame):
     ## 
-    ## data.frame:  3963 obs. of  1 variables
+    ## data.frame:  4082 obs. of  1 variables
     ## 
     ##   Nr  ColName  Class    NAs        Levels
-    ##   1   value    numeric  24 (0.6%)        
+    ##   1   value    numeric  26 (0.6%)        
     ## 
     ## 
     ## ------------------------------------------------------------------------- 
     ## Glucose Values While Awake
     ## 
     ##   length      n    NAs  unique     0s    mean  meanCI
-    ##    3'963  3'939     24     124      0   88.15   87.52
-    ##           99.4%   0.6%           0.0%           88.77
+    ##    4'082  4'056     26     125      0   88.16   87.55
+    ##           99.4%   0.6%           0.0%           88.78
     ##                                                      
     ##      .05    .10    .25  median    .75     .90     .95
-    ##    58.00  65.00  75.00   86.00  99.00  114.00  125.00
+    ##    58.00  65.00  75.00   86.00  99.00  115.00  126.00
     ##                                                      
     ##    range     sd  vcoef     mad    IQR    skew    kurt
-    ##   151.00  20.05   0.23   17.79  24.00    0.52    1.00
+    ##   151.00  20.11   0.23   17.79  24.00    0.55    1.01
     ##                                                      
     ## lowest : 40.0 (33), 41.0 (5), 42.0 (5), 43.0 (3), 44.0 (7)
     ## highest: 169.0, 172.0, 187.0, 188.0, 191.0
